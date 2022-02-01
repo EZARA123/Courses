@@ -18,7 +18,7 @@ router.get('/courses/delete/:id', courseController.deleteCourse);
 
 
 router.get('/students', studentController.viewAll);
-
-
+router.get('/students/profile/:id', studentController.viewProfile);
+router.get('students/edit/:id', studentController.renderEditForm);
 
 module.exports = router;
