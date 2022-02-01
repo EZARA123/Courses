@@ -13,9 +13,17 @@ module.exports.viewProfile= async function(req,res){
 }
 
 //render add
+module.exports.renderAddForm = function(req, res){
+const student = {
+    first_name:'',
+    last_name: '',
+    grade_level: 9,
+    }
+    res.render('student/add', {student});
+}
 
 //add
-
+module.exports.addStudent = async function(req, res){}
 //render edit
 module.exports.renderEditForm = async function(req, res){
     const student = await Student.findByPk(req.params.id);
@@ -31,6 +39,9 @@ module.exports.updateStudent = async function(req, res){
         last_name: req.body.last_name,
         grade_level: req.body.grade_level,
     }, {
-        where:{}
-    })
+        where:{
+            id: req.params.id
+        }
+    });
+    res.redirect(`/students/profile/${req.params.id}`);
 }
