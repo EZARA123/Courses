@@ -53,3 +53,13 @@ module.exports.updateStudent = async function(req, res){
     });
     res.redirect(`/students/profile/${req.params.id}`);
 }
+
+//delete
+module.exports.deleteStudent = async function(req, res){
+    await Student.destroy( {
+        where: {
+            id:req.params.id
+        }
+    });
+    res.redirect('/students');
+}
