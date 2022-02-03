@@ -12,6 +12,8 @@ module.exports.viewProfile = async function(req,res){
     const course = await Course.findByPk(req.params.id, {
         include: 'students'
     });
+    const students = await Student.findAll();
+    let availableStudents = [];
     res.render('course/profile', {course})
 }
 
@@ -69,4 +71,13 @@ module.exports.deleteCourse = async function(req, res){
     }
     });
     res.redirect('/courses');
+}
+
+function courseHasStudent(course, student){
+    for (let i = 0; i < course.students.length; i++){
+        if (student.id === course.students[i].id){
+            return true
+        }
+    }
+    return false
 }
