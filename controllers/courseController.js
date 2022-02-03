@@ -14,7 +14,12 @@ module.exports.viewProfile = async function(req,res){
     });
     const students = await Student.findAll();
     let availableStudents = [];
-    res.render('course/profile', {course})
+    for (let i=0; i<students.lenght; i++){
+        if (!courseHasStudent(course, students[i])){
+            availableStudents.push(students[i])
+        }
+    }
+    res.render('course/profile', {course, availableStudents})
 }
 
 //render add form
