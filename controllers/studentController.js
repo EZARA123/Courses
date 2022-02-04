@@ -92,10 +92,6 @@ module.exports.enrollStudent = async function (req, res){
     res.redirect(`/students/profile/${req.params.studentId}`);
 }
 
-function studentHasCourse(student, course) {
-
-}
-
 module.exports.removeCourse = async function(req, res){
     await StudentCourses.destroy( {
         where:{
